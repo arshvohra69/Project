@@ -8,10 +8,15 @@ struct LL
 typedef struct LL node;
     int ch;
     void insert();
+    void count();
     void print();
     void insert_beg();
     void insert_mid();
     void insert_end();
+    void delete();
+    void delete_beg();
+    void delete_mid();
+    void delete_end();
 int main()
 {
 
@@ -25,9 +30,13 @@ int main()
         break;
         case 2: print();
         break;
-        case 3: break;
+        case 3: count();
+        break;
+        case 4: delete();
+        break;
+        case 5: break;
     }
-    }while(ch!=3);
+    }while(ch!=5);
 
 }
 void insert()
@@ -102,3 +111,63 @@ void print()
         r=r->next;
     }
 }
+void count()
+{
+    int count=0;
+    node *r;
+    r = head;
+    while(r!=NULL)
+    {
+        count++;
+        r=r->next;
+    }
+    printf("%d\n",count);
+}
+void delete()
+{
+    int ch;
+    printf("Enter 1 for delete from beginning, 2 for delete from middle or 3 for delete from end\n");
+    scanf("%d",&ch);
+    switch(ch)
+    {
+        case 1: delete_beg();
+        break;
+        case 2: delete_mid();
+        break;
+        case 3: delete_end();
+        break;
+        default: printf("Invalid choice, enter 1,2 or 3\n");
+    }
+}
+ void delete_beg()
+ {
+     node *p;
+     p=head;
+     head=head->next;
+     free(p);
+ }
+ void delete_mid()
+ {
+     int pos;
+     printf("Enter the position which you want to clear\n");
+     scanf("%d",&pos);
+     node *ptr,*q;
+     ptr=head;
+     for(int i=1;i<pos-1;i++)
+        ptr=ptr->next;
+     q=ptr->next;
+     ptr->next=q->next;
+     free(q);
+ }
+ void delete_end()
+ {
+     node *q,*p;
+     q=head;
+     p= q->next;
+     while(p->next != NULL)
+       {
+         q=q->next;
+       }
+     free(p);
+     p=NULL;
+ }
