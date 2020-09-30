@@ -9,6 +9,7 @@ typedef struct LL node;
     int ch;
     void insert();
     void print();
+    void count();
     void insert_beg();
     void insert_mid();
     void insert_end();
@@ -25,7 +26,9 @@ int main()
         break;
         case 2: print();
         break;
-        case 3: break;
+        case 3: count();
+        break;
+        case 4: break;
     }
     }while(ch!=3);
 
@@ -101,4 +104,16 @@ void print()
         printf("%d\n", r->item);
         r=r->next;
     }
+}
+void count()
+{
+    int count=0;
+    node *r;
+    r = head;
+    while(r!=NULL)
+    {
+        count++;
+        r=r->next;
+    }
+    printf("%d\n",count);
 }
